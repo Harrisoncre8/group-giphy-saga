@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Favorite from '../Favorite/Favorite';
 import Search from '../Search/Search'
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends Component {
@@ -8,9 +9,11 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Giphy Search!</h1>
-        <Favorite />
-        <Search />
+        <Router>
+          <h1>Giphy Search!</h1>
+          <Route exact path="/" component={ Search }/>
+          <Route path="/favorites" component={ Favorite }/>
+        </Router>
       </div>
     );
   }
