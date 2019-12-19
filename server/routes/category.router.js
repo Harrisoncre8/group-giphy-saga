@@ -19,10 +19,10 @@ dotenv.config();
 //         });
 // });
 
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
     console.log('-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------');
     let apiKey = process.env.API_KEY;
-    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=cheeseburger`)
+    axios.get(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${req.params.id}`)
     .then(response=>{
         res.send(response.data.data);
     })
