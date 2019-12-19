@@ -26,7 +26,7 @@ function* getGiphySaga(){
 }
 
 function* getFavoriteSaga() {
-    try{
+    try{    
         const getResponse = yield axios.get(`/api/favorite`);
         yield put( { type: 'SET_FAVORITE', payload: getResponse.data } );
     }
