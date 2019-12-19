@@ -10,6 +10,7 @@ import {takeEvery, put} from 'redux-saga/effects';
 
 function* watcherSaga(){
   yield takeEvery(`GET_GIPHY`, getGiphySaga);
+  yield takeEvery(`GET_FAVORITE`, getFavoriteSaga);
 }
 
 
@@ -24,6 +25,16 @@ function* getGiphySaga(){
   }
 }
 
+function* getFavoriteSaga() {
+    try{
+        const getResponse = yield axios.get(`/api/favorite`);
+        yield put( { type: 'SET_FAVORITE', payload: getResponse.data } );
+    }
+    catch (error) {
+        console.log('error in Favorite GET', error);
+    }
+}
+
 const giphyReducer = (state=[], action) => {
   if (action.type === 'STORE_GIPHY'){
       return action.payload
@@ -31,6 +42,7 @@ const giphyReducer = (state=[], action) => {
   return state;
 }
 
+// favorite reducer
 const favoriteReducer = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
         return action.payload;
