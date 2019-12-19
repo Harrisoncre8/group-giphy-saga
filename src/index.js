@@ -15,9 +15,10 @@ function* watcherSaga(){
 
 
 function* getGiphySaga(){
-  console.log('in GET');
+  console.log('in GET SAGA');
   try{
     const getResponse = yield axios.get(`/api/category`);
+    console.log('RESPONSE DATA-------------------', getResponse.data);
     yield put({type: `STORE_GIPHY`, payload: getResponse.data});
   }
   catch(error){
@@ -26,6 +27,7 @@ function* getGiphySaga(){
 }
 
 const giphyReducer = (state=[], action) => {
+  console.log('in giphy reducer');
   if (action.type === 'STORE_GIPHY'){
       return action.payload
   }
