@@ -9,19 +9,21 @@ import createSagaMiddleware from 'redux-saga';
 import {takeEvery, put} from 'redux-saga/effects';
 
 function* watcherSaga(){
-  yield takeEvery(`GET_GIPHY`, getGiphySaga);
   yield takeEvery(`GET_FAVORITE`, getFavoriteSaga);
+  yield takeEvery(`SEARCH`, searchGiphySaga);
 }
 
 
-function* getGiphySaga(){
-  console.log('in GET');
+function* searchGiphySaga(action){
+  console.log('in SEARCH SAGA');
   try{
-    const getResponse = yield axios.get(`/api/category`);
+    let id = action.payload
+    const getResponse = yield axios.get(`/api/category/${id}`);
+    console.log('RESPONSE DATA-------------------', getResponse.data);
     yield put({type: `STORE_GIPHY`, payload: getResponse.data});
   }
   catch(error){
-    console.log('error in GET', error);
+    console.log('error in SEARCH', error);
   }
 }
 
@@ -36,6 +38,7 @@ function* getFavoriteSaga() {
 }
 
 const giphyReducer = (state=[], action) => {
+  console.log('in giphy reducer');
   if (action.type === 'STORE_GIPHY'){
       return action.payload
   }
