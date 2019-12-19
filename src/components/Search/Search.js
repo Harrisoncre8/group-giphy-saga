@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Like from '../Like/Like'
+import { Link } from 'react-router-dom'
 
 class Search extends Component{
 
@@ -55,6 +56,10 @@ class Search extends Component{
     if(!this.state.like){
     return(
       <>
+      <Link to="/favorites">Favorite Gifs</Link>
+      <br/>
+      <br/>
+      {JSON.stringify(this.state)}
         <input type="text" onChange={(event)=>this.handleChange(event)} value={this.state.search} placeholder="search" />
         <button onClick={this.handleClick}>SEARCH</button>
         {this.props.reduxState.map((image, i) =>
