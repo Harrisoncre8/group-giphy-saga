@@ -12,6 +12,18 @@ function* watcherSaga(){
   yield takeEvery(`GET_FAVORITE`, getFavoriteSaga);
   yield takeEvery(`SEARCH`, searchGiphySaga);
   yield takeEvery(`SORT_FAVORITE`, sortFavoriteSaga)
+  yield takeEvery(`ADD_FAVORITE`, postFavoriteToServer);
+}
+
+function* postFavoriteToServer(action){
+  try{
+    console.log('In POST FAV SAGA with action:', action.payload);
+    yield axios.post(`/api/favorite`, action.payload);
+    yield put( { type: 'GET_FAVORITE'} );
+  }
+  catch (error) {
+    console.log('error in Favorite GET', error);
+  }
 }
 
 // Saga that search category in giphy
@@ -44,6 +56,7 @@ function* sortFavoriteSaga(action) {
     let id = action.payload
     try{
         const getResponse = yield axios.get(`/api/favorite/${id}`);
+        yield put({type: 'SET_FAVORITE', payload: getResponse.data})
     }
     catch (error){
         console.log('error in Favorite SORT', error);
@@ -52,9 +65,8 @@ function* sortFavoriteSaga(action) {
 }
 
 const giphyReducer = (state=[], action) => {
-  console.log('in giphy reducer');
   if (action.type === 'STORE_GIPHY'){
-      return action.payload
+      return action.payload;
   }
   return state;
 }
@@ -67,12 +79,28 @@ const favoriteReducer = (state = [], action) => {
     return state;
 }
 
+const setFavUrlReducer = (state=[], action) => {
+  if(action.type === `SET_FAV_URL`){
+    return action.payload;
+  }
+  return state;
+}
+
+const sortFavCategory = (state=[], action) => {
+    if(action.type === `SET_NEWFAV`){
+        return [action.payload]
+    }
+    return state;
+}
+
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
   combineReducers({
     giphyReducer,
-    favoriteReducer
+    favoriteReducer,
+    setFavUrlReducer,
+    sortFavCategory
 }),
   applyMiddleware(sagaMiddleware, logger)
 )
@@ -80,5 +108,3 @@ const storeInstance = createStore(
 sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
-
-

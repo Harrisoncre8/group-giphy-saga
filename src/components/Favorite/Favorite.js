@@ -4,14 +4,14 @@ import { connect } from 'react-redux';
 class Favorite extends Component {
 
     state = {
-        category: ''
+        category: '',
     }
 
     componentDidMount() {
         this.props.dispatch( { type: 'GET_FAVORITE' } )
     }
 
-    componentDidUpdate(){
+    handleClick = () => {
         this.props.dispatch({type: 'SORT_FAVORITE', payload: this.state.category })
     }
 
@@ -77,9 +77,11 @@ class Favorite extends Component {
                         />
 
                     </label>
+                    <br/>
+                    <button onClick={this.handleClick}>Show me the category</button>
                 </div>
                 {this.props.reduxState.map((item,i) => 
-                    <p key={i}>{item.id}</p>
+                    <img key={i} src={item.url} alt='favorited image'/>
                 )}
             </div>
         );
