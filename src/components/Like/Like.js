@@ -26,8 +26,8 @@ class Like extends Component{
       <br />
       <input type="radio"
         name="category"
-        id="funny"
-        value="funny"
+        id="1"
+        value="1"
         check={this.state.category === 1}
         onChange={(event)=>this.handleChange(event)}
         />Funny
@@ -36,8 +36,8 @@ class Like extends Component{
 
       <input type="radio"
         name="category"
-        id="vega"
-        value="vega"
+        id="2"
+        value="2"
         check={this.state.category === 2}
         onChange={(event)=>this.handleChange(event)}
         />Vega
@@ -46,8 +46,8 @@ class Like extends Component{
 
       <input type="radio"
         name="category"
-        id="cartoon"
-        value="cartoon"
+        id="3"
+        value="3"
         check={this.state.category === 3}
         onChange={(event)=>this.handleChange(event)}
         />Cartoon
@@ -56,8 +56,8 @@ class Like extends Component{
 
       <input type="radio"
         name="category"
-        id="nsfw"
-        value="nsfw"
+        id="4"
+        value="4"
         check={this.state.category === 4}
         onChange={(event)=>this.handleChange(event)}
         />NSFW
@@ -66,8 +66,8 @@ class Like extends Component{
 
       <input type="radio"
         name="category"
-        id="meme"
-        value="meme"
+        id="5"
+        value="5"
         check={this.state.category === 5}
         onChange={(event)=>this.handleChange(event)}
         />Meme
