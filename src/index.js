@@ -11,6 +11,7 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* watcherSaga(){
   yield takeEvery(`GET_FAVORITE`, getFavoriteSaga);
   yield takeEvery(`SEARCH`, searchGiphySaga);
+  yield takeEvery(`SORT_FAVORITE`, sortFavoriteSaga)
   yield takeEvery(`ADD_FAVORITE`, postFavoriteToServer);
 }
 
@@ -25,7 +26,7 @@ function* postFavoriteToServer(action){
   }
 }
 
-
+// Saga that search category in giphy
 function* searchGiphySaga(action){
   console.log('in SEARCH SAGA');
   try{
@@ -39,6 +40,7 @@ function* searchGiphySaga(action){
   }
 }
 
+// Saga that gets all the favorited images
 function* getFavoriteSaga() {
     try{    
         const getResponse = yield axios.get(`/api/favorite`);
@@ -49,6 +51,19 @@ function* getFavoriteSaga() {
     }
 }
 
+// Saga that sorts the favorited images
+function* sortFavoriteSaga(action) {
+    let id = action.payload
+    try{
+        const getResponse = yield axios.get(`/api/favorite/${id}`);
+        yield put({type: 'SET_FAVORITE', payload: getResponse.data})
+    }
+    catch (error){
+        console.log('error in Favorite SORT', error);
+        
+    }
+}
+
 const giphyReducer = (state=[], action) => {
   if (action.type === 'STORE_GIPHY'){
       return action.payload;
@@ -56,7 +71,7 @@ const giphyReducer = (state=[], action) => {
   return state;
 }
 
-// favorite reducer
+// GETS sorted image
 const favoriteReducer = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
         return action.payload;
@@ -70,6 +85,7 @@ const setFavUrlReducer = (state=[], action) => {
   }
   return state;
 }
+
 
 const sagaMiddleware = createSagaMiddleware();
 

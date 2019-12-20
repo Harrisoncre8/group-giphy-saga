@@ -5,8 +5,28 @@ const router = express.Router();
 
 // return all favorite images
 router.get('/', (req, res) => {
-  const queryText = `SELECT * FROM category ORDER BY name ASC`;
+  const queryText = `SELECT * FROM favorite`;
     pool.query(queryText)
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch( (error) => {
+          console.log(`Error on query ${error}`);
+        res.sendStatus(500);
+    });
+});
+
+// sort through and get favorite images
+router.get('/:id', (req, res) => {
+  let queryText = '';
+  let id = [];
+  if(!id){
+    queryText = `SELECT * FROM favorite`;
+  } else {
+    id = [req.params.id]
+    queryText = `SELECT * FROM favorite WHERE category_id=$1`;
+  }
+    pool.query(queryText, id)
         .then( (result) => {
             res.send(result.rows);
         })
