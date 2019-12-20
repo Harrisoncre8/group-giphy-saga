@@ -16,6 +16,20 @@ router.get('/', (req, res) => {
     });
 });
 
+// sort through and get favorite images
+router.get('/:id', (req, res) => {
+  console.log(req.params.id);
+  const queryText = `SELECT * FROM favorite WHERE category_id=$1`;
+    pool.query(queryText, req.params.id)
+        .then( (result) => {
+            res.send(result.rows);
+        })
+        .catch( (error) => {
+          console.log(`Error on query ${error}`);
+        res.sendStatus(500);
+    });
+});
+
 // add a new favorite 
 router.post('/', (req, res) => {
   res.sendStatus(200);

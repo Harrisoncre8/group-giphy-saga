@@ -11,6 +11,10 @@ class Favorite extends Component {
         this.props.dispatch( { type: 'GET_FAVORITE' } )
     }
 
+    componentDidUpdate(){
+        this.props.dispatch({type: 'SORT_FAVORITE', payload: this.state.category })
+    }
+
     handleChange = (event) => {
         this.setState({
             category: event.target.value,
