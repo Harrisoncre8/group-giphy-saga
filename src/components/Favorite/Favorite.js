@@ -25,63 +25,63 @@ class Favorite extends Component {
         return (
             <div>
                 <div>
-                    <label>
-
-                        Vega
-                        <input type='radio'
-                        name='radio'
-                        id='vega'
-                        value='2'
-                        check={this.state.category === 2}
-                        onChange={(event)=> this.handleChange(event)}
-                        />
-                        <br/>
-
-                        Cartoon
                         <input type='radio'
                             name='radio'
-                            id='cartoon'
-                            value='3'
-                            check={this.state.category === 3}
-                            onChange={(event)=> this.handleChange(event)}
-                        />
-                        <br/>
-
-                        Meme
-                        <input type='radio'
-                            name='radio'
-                            id='meme'
-                            value='5'
-                            check={this.state.category === 5}
-                            onChange={(event)=> this.handleChange(event)}
-                        />
-                        <br/>
-
-                        NSFW
-                        <input type='radio'
-                            name='radio'
-                            id='nsfw'
-                            value='4'
-                            check={this.state.category === 4}
-                            onChange={(event)=> this.handleChange(event)}
-                        />
-                        <br/>
-
-                        Funny
-                        <input type='radio'
-                            name='radio'
+                            className="radio-btn"
                             id='funny'
                             value='1'
                             check={this.state.category === 1}
                             onChange={(event)=> this.handleChange(event)}
-                        />
+                        /><span className="radio">Funny</span>
+                        <br/>
 
-                    </label>
+                        <input type='radio'
+                        name='radio'
+                        className="radio-btn"
+                        id='vega'
+                        value='2'
+                        check={this.state.category === 2}
+                        onChange={(event)=> this.handleChange(event)}
+                        /><span className="radio">Vega</span>
+                        <br/>
+
+                        <input type='radio'
+                            name='radio'
+                            className="radio-btn"
+                            id='cartoon'
+                            value='3'
+                            check={this.state.category === 3}
+                            onChange={(event)=> this.handleChange(event)}
+                        /><span className="radio">Cartoon</span>
+                        <br/>
+
+                        <input type='radio'
+                            name='radio'
+                            className="radio-btn"
+                            id='nsfw'
+                            value='4'
+                            check={this.state.category === 4}
+                            onChange={(event)=> this.handleChange(event)}
+                        /><span className="radio">NSFW</span>
+                        <br/>
+
+                        <input type='radio'
+                            name='radio'
+                            className="radio-btn"
+                            id='meme'
+                            value='5'
+                            check={this.state.category === 5}
+                            onChange={(event)=> this.handleChange(event)}
+                        /><span className="radio">Meme</span>
+                        
                     <br/>
                     <button onClick={this.handleClick}>Show me the category</button>
                 </div>
                 {this.props.reduxState.map((item,i) => 
-                    <img key={i} src={item.url} alt='favorited image'/>
+                    <div key={i}>
+                    <br />
+                    <img src={item.url} alt='favorited image'/>
+                    </div>
                 )}
             </div>
         );
