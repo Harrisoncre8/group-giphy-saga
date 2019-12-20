@@ -18,7 +18,16 @@ router.get('/', (req, res) => {
 
 // add a new favorite 
 router.post('/', (req, res) => {
-  res.sendStatus(200);
+  console.log('in POST with:', req.body);
+  let id = [req.body.gif, req.body.category];
+  const queryText = `INSERT INTO favorite ("url", "category_id") VALUES ($1, $2);`;
+  pool.query(queryText, id)
+  .then(result=>{
+    res.sendStatus(201);
+  }).catch(error=>{
+    console.log('ERROR IN POST ------------------------------------>', error);
+    res.sendStatus(500);
+  });
 });
 
 // update given favorite with a category id

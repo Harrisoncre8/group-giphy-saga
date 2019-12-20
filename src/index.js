@@ -11,6 +11,18 @@ import {takeEvery, put} from 'redux-saga/effects';
 function* watcherSaga(){
   yield takeEvery(`GET_FAVORITE`, getFavoriteSaga);
   yield takeEvery(`SEARCH`, searchGiphySaga);
+  yield takeEvery(`ADD_FAVORITE`, postFavoriteToServer);
+}
+
+function* postFavoriteToServer(action){
+  try{
+    console.log('In POST FAV SAGA with action:', action.payload);
+    yield axios.post(`/api/favorite`, action.payload);
+    yield put( { type: 'GET_FAVORITE'} );
+  }
+  catch (error) {
+    console.log('error in Favorite GET', error);
+  }
 }
 
 
@@ -38,7 +50,6 @@ function* getFavoriteSaga() {
 }
 
 const giphyReducer = (state=[], action) => {
-  console.log('in giphy reducer');
   if (action.type === 'STORE_GIPHY'){
       return action.payload;
   }
@@ -54,7 +65,6 @@ const favoriteReducer = (state = [], action) => {
 }
 
 const setFavUrlReducer = (state=[], action) => {
-  console.log('in set fav url reducer');
   if(action.type === `SET_FAV_URL`){
     return action.payload;
   }
@@ -75,5 +85,3 @@ const storeInstance = createStore(
 sagaMiddleware.run(watcherSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, document.getElementById('root'));
-
-
