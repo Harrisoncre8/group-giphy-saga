@@ -16,61 +16,67 @@ class Like extends Component{
   }
 
   handleSubmit = () => {
+    alert(`You added this to your favorites!~`);
     this.props.dispatch({type: `ADD_FAVORITE`, payload: this.state});
+    this.props.handleLike();
   }
 
   render(){
     return(
       <>
-      {JSON.stringify(this.state)}
       <br />
       <input type="radio"
         name="category"
+        className="radio-btn"
         id="1"
         value="1"
         check={this.state.category === 1}
         onChange={(event)=>this.handleChange(event)}
-        />Funny
+        /><span className="radio">Funny</span>
 
         <br />
 
       <input type="radio"
         name="category"
+        className="radio-btn"
         id="2"
         value="2"
         check={this.state.category === 2}
         onChange={(event)=>this.handleChange(event)}
-        />Vega
+        /><span className="radio">Vega</span>
         
         <br />
 
       <input type="radio"
         name="category"
+        className="radio-btn"
         id="3"
         value="3"
         check={this.state.category === 3}
         onChange={(event)=>this.handleChange(event)}
-        />Cartoon
+        /><span className="radio">Cartoon</span>
         
         <br />
 
       <input type="radio"
         name="category"
+        className="radio-btn"
         id="4"
         value="4"
         check={this.state.category === 4}
         onChange={(event)=>this.handleChange(event)}
-        />NSFW
+        /><span className="radio">NSFW</span>
         
         <br />
 
       <input type="radio"
         name="category"
+        className="radio-btn"
         id="5"
         value="5"
         check={this.state.category === 5}
         onChange={(event)=>this.handleChange(event)}
-        />Meme
+        /><span className="radio">Meme</span>
         
         <br />
 

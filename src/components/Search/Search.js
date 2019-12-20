@@ -63,18 +63,23 @@ class Search extends Component{
     if(!this.state.like){
     return(
       <>
-      <Link to="/favorites">Favorite Gifs</Link>
+      <Link to="/favorites">&#9655;&#9655; Favorite Gifs &#9665;&#9665;</Link>
       <br/>
       <br/>
-      {JSON.stringify(this.state)}
-        <input type="text" onChange={(event)=>this.handleChange(event)} 
+        <input className="search-in" 
+          type="text" 
+          onChange={(event)=>this.handleChange(event)} 
           value={this.state.search} 
           ref={(input) => { this.mainInput = input; }}
           placeholder="search" />
+
         <button onClick={this.handleClick}>SEARCH</button>
+        <hr />
+        <br/>
         {this.props.reduxState.map((image, i) =>
           <div key={i}><img src={image.images.original.url} alt={image.title} />
-          <button onClick={()=>this.handleLike(i)}>Like</button></div>
+          <br />
+          <button className="like-btn" onClick={()=>this.handleLike(i)}>Like</button></div>
         )}
       </>
     )
@@ -82,11 +87,19 @@ class Search extends Component{
     else {
       return(
         <>
-          <input type="text" onChange={(event)=>this.handleChange(event)} value={this.state.search} placeholder="search" />
+          <input className="search-in" 
+            type="text" 
+            onChange={(event)=>this.handleChange(event)} 
+            value={this.state.search} 
+            placeholder="search" />
+
           <button onClick={this.handleClick}>SEARCH</button>
+          <hr />
+          <br/>
           <img src={this.props.reduxState[this.state.id].images.original.url} alt={this.props.reduxState.title} />
+          <br />
           <button onClick={()=>this.handleLike()}>Back</button>
-          <Like />
+          <Like handleLike={this.handleLike} />
         </>
       )
     }

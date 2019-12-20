@@ -1,0 +1,57 @@
+* {
+  margin: 0;
+}
+
+body {
+  background: #0f0c29;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.app {
+  text-align: center;
+}
+
+.header {
+  background: #FC5C7D;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #6A82FB, #FC5C7D);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #6A82FB, #FC5C7D); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  padding: 30px;
+  margin-bottom: 10px;
+  font-size: 3em;
+}
+
+.search-in {
+  margin: 10px;
+  font-size: 16pt;
+}
+
+a {
+  font-size: 20pt;
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+  background-color: lightblue;
+}
+
+button {
+  font-size: 16pt;
+}
+
+.like-btn {
+  margin-bottom: 50px;
+}
+
+.radio {
+  font-size: 16pt;
+  color: white;
+  padding: 10px;
+}
+
+.radio-btn {
+  margin: 10px;
+}
