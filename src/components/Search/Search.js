@@ -12,7 +12,6 @@ class Search extends Component{
   }
 
   componentDidMount(){
-    console.log('in GET GIPHY client');
     this.props.dispatch({type: 'GET_GIPHY'})
   }
 
@@ -20,6 +19,13 @@ class Search extends Component{
     if(this.state.like){
       this.props.dispatch({type: `SET_FAV_URL`, payload: this.props.reduxState[this.state.id].images.original.url});
     }
+  }
+
+  focusInput = () => {
+    this.mainInput.focus();
+    this.setState({
+      search: ''
+    });
   }
 
   handleChange = (event) => {
@@ -35,6 +41,7 @@ class Search extends Component{
       });
     }
     this.props.dispatch({type: `SEARCH`, payload: this.state.search});
+    this.focusInput();
   }
 
   handleLike = (id) => {
@@ -60,10 +67,13 @@ class Search extends Component{
       <br/>
       <br/>
       {JSON.stringify(this.state)}
-        <input type="text" onChange={(event)=>this.handleChange(event)} value={this.state.search} placeholder="search" />
+        <input type="text" onChange={(event)=>this.handleChange(event)} 
+          value={this.state.search} 
+          ref={(input) => { this.mainInput = input; }}
+          placeholder="search" />
         <button onClick={this.handleClick}>SEARCH</button>
         {this.props.reduxState.map((image, i) =>
-          <div key={i}><img src={image.images.original.url} alt="Giphy search results"/>
+          <div key={i}><img src={image.images.original.url} alt={image.title} />
           <button onClick={()=>this.handleLike(i)}>Like</button></div>
         )}
       </>
@@ -74,7 +84,7 @@ class Search extends Component{
         <>
           <input type="text" onChange={(event)=>this.handleChange(event)} value={this.state.search} placeholder="search" />
           <button onClick={this.handleClick}>SEARCH</button>
-          <img src={this.props.reduxState[this.state.id].images.original.url} alt="Selected Gif" />
+          <img src={this.props.reduxState[this.state.id].images.original.url} alt={this.props.reduxState.title} />
           <button onClick={()=>this.handleLike()}>Back</button>
           <Like />
         </>
