@@ -71,7 +71,7 @@ const giphyReducer = (state=[], action) => {
   return state;
 }
 
-// favorite reducer
+// GETS sorted image
 const favoriteReducer = (state = [], action) => {
     if (action.type === 'SET_FAVORITE') {
         return action.payload;
@@ -86,12 +86,6 @@ const setFavUrlReducer = (state=[], action) => {
   return state;
 }
 
-const sortFavCategory = (state=[], action) => {
-    if(action.type === `SET_NEWFAV`){
-        return [action.payload]
-    }
-    return state;
-}
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -99,8 +93,7 @@ const storeInstance = createStore(
   combineReducers({
     giphyReducer,
     favoriteReducer,
-    setFavUrlReducer,
-    sortFavCategory
+    setFavUrlReducer
 }),
   applyMiddleware(sagaMiddleware, logger)
 )
