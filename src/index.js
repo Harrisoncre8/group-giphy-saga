@@ -40,7 +40,7 @@ function* getFavoriteSaga() {
 const giphyReducer = (state=[], action) => {
   console.log('in giphy reducer');
   if (action.type === 'STORE_GIPHY'){
-      return action.payload
+      return action.payload;
   }
   return state;
 }
@@ -53,12 +53,21 @@ const favoriteReducer = (state = [], action) => {
     return state;
 }
 
+const setFavUrlReducer = (state=[], action) => {
+  console.log('in set fav url reducer');
+  if(action.type === `SET_FAV_URL`){
+    return action.payload;
+  }
+  return state;
+}
+
 const sagaMiddleware = createSagaMiddleware();
 
 const storeInstance = createStore(
   combineReducers({
     giphyReducer,
-    favoriteReducer
+    favoriteReducer,
+    setFavUrlReducer
 }),
   applyMiddleware(sagaMiddleware, logger)
 )
