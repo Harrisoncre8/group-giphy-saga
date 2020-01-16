@@ -13,11 +13,11 @@ In this project, my group and I set out to create an application that sends an a
 
 ### Landing Page
 ![Screenshot 1](wireframes/image1.png)
-### Add Liked Image to Funny Category
+### Add Favorited Image to Funny Category
 ![Screenshot 1](wireframes/image2.png)
-### Add Another Liked Image to Funny Category
+### Add Another Favorited Image to Funny Category
 ![Screenshot 1](wireframes/image3.png)
-### Funny Page
+### Funny Page with Favorited Images
 ![Screenshot 1](wireframes/image4.png)
 ### Images within Funny Page
 ![Screenshot 1](wireframes/image5.png)
