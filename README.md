@@ -1,66 +1,58 @@
-# Giphy Search and Favorites
+# Giphy API with Saga 
 
-This week you will be building a Giphy searching and favoriting application which allows the user to save images and sort them into categories.
+## Description
 
-In this project you will need to utilize React, Redux, Sagas and integrate them with a 3rd party API....all in a group project!
+Duration: 2 Days
 
-## Team Setup
-Do not clone this repository. Instead, have one person download the zip, extract the contents, `git init`, `git add .`, `git commit -m "initial commit - base project"` and add your remote. Make your team collaborators. Have them clone directly from the person who did the setup, not fork.
+What problem did you solve? How did you solve it?
+In this project, my group and I set out to create an application that sends an axios request to the Giphy API database via sagas and store the response within a reducer. Users are able to use key words to search for different gif images from giphy within our applicaiton. The users are also able favorite differeny gifs that they found through the search feature and save it to their favorited category.
 
+<!-- To see the fully functional site, please visit: DEPLOYED VERSION OF APP -->
 
-## Create Database and Tables
+## Wireframe
 
-See the `database.sql` file for database setup and details. It offers some of the SQL to get you started but you'll need to set up your tables and the relationships between them. 
+### Landing Page
+![Screenshot 1](wireframes/image1.png)
+### Add Liked Image to Funny Category
+![Screenshot 1](wireframes/image2.png)
+### Add Another Liked Image to Funny Category
+![Screenshot 1](wireframes/image3.png)
+### Funny Page
+![Screenshot 1](wireframes/image4.png)
+### Images within Funny Page
+![Screenshot 1](wireframes/image5.png)
 
+### Prerequisites
 
-## Development Setup Instructions
+https://nodejs.org/en/
+https://developers.giphy.com/docs/api#quick-start-guide
 
-* Run `npm install`
-* Start postgres if not running already by using `brew services start postgresql`
-* Run `npm run server` to start the server
-* Run `npm run client` to start the client
-* Navigate to `localhost:3000`
+## Installation
+This is a step by step list for how another developer could get this project up and running.
 
+1. Create a database named giphy_search_favorites
+2. The queries in the tables.sql file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on Postgres, so you will need to make sure to have that installed. I recommend using Postico to run those queries as that was used to create the queries.
+3. Open up your editor of choice and run an npm install
+4. Run npm run server in your terminal
+5. Run npm run client in your terminal
+6. The npm run client command will open up a new browser tab for you!
 
-## Base Features
+## Usage
+You can use this applicaiton to learn how to access different API's.
 
-You will need 2 views for the Base Features. You should put some thought into the UI and how to style it.
+## Built With
+* SERN Stack
+    * SQL
+    * Express
+    * React
+    * Redux
+    * Node
+    * Material UI
+    * Postgres
+    * Postico
 
+## Acknowledgement
+Thanks to Prime Digital Academy in Minneapolis who equipped and helped me to make this application a reality. Special thanks to https://github.com/AwrenNuit, https://github.com/elmiabdirahman, and https://github.com/cmdornfeld that helped with different features and components.
 
-### Search View
-
-- Allow a user to enter a search string and submit a search request.
-- Query the `Giphy API Search Endpoint` with the given search string FROM THE SERVER.
-- Display the results on the DOM.
-- Allow a user to Favorite any of the result images. You'll need to think about what information to save to your own database. Generally you only store the minimum needed to show this image again on the Favorites view.
-
-
-### Favorites View
-
-- Allow a user to see all of the Giphy images they have Favorited. The actual images need to appear on the DOM.
-- Allow a user to set a category for a favorite image.
-    - Each favorite image can only have 1 category at a time.
-    - The category needs to be one of the categories in the database.
-
-
-## Existing Routes
-
-You are given two router modules on the server with stubs for the routes you may need.
-
-- `GET /api/category` (complete)
-    - returns a list of all categories from the table ordered by name. You may test it if your server is running: [http://localhost:5000/api/category](http://localhost:5000/api/category)
-
-- `POST /api/favorite` (incomplete)
-    - for adding a new favorite image. You'll need to think about what is needed. Does it need a category?
-
-- `PUT /api/favorite` (incomplete)
-    - for setting a category on an image. It expects both a query parameter and a data body. Feel free to change it.
-
-
-## Stretch Features
-
-1. Allow favorites to be removed/unfavorited
-2. Allow for a favorite to have many categories
-3. Implement the pagination feature of the Giphy search results
-4. Add another view that allows a user to manage (create, edit, delete) categories
-
+## Support
+If you have suggestions or issues, please email me at harrisonnguyen517@gmail.com
