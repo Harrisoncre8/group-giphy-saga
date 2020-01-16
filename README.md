@@ -24,8 +24,8 @@ In this project, my group and I set out to create an application that sends an a
 
 ### Prerequisites
 
-https://nodejs.org/en/
-https://developers.giphy.com/docs/api#quick-start-guide
+- https://nodejs.org/en/
+- https://developers.giphy.com/docs/api#quick-start-guide
 
 ## Installation
 This is a step by step list for how another developer could get this project up and running.
